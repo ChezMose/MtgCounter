@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "MtgCounter",
+    "slug": "mtgcounter",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "mtgcounter",
+    "userInterfaceStyle": "dark",
+    "android": {
+      "package": "com.mtgcounter.app"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 24,
+            "targetSdkVersion": 34
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
