@@ -18,6 +18,16 @@ export default function RootLayout() {
             headerShadowVisible: false,
           }}
         />
+        <Stack.Screen
+          name="share"
+          options={{
+            presentation: 'modal',
+            headerTitle: 'Share',
+            headerStyle: { backgroundColor: '#0d1117' },
+            headerTintColor: '#e8e8e8',
+            headerShadowVisible: false,
+          }}
+        />
       </Stack>
     </GameProvider>
   );

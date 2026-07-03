@@ -23,10 +23,17 @@ export default function GameScreen() {
       {/* Middle action bar */}
       <View style={styles.bar}>
         <Pressable
-          style={({ pressed }) => [styles.historyBtn, pressed && styles.historyBtnPressed]}
+          style={({ pressed }) => [styles.iconBtn, pressed && styles.iconBtnPressed]}
           onPress={() => router.push('/history')}
         >
-          <Text style={styles.historyIcon}>📜</Text>
+          <Text style={styles.iconText}>📜</Text>
+        </Pressable>
+
+        <Pressable
+          style={({ pressed }) => [styles.iconBtn, pressed && styles.iconBtnPressed]}
+          onPress={() => router.push('/share')}
+        >
+          <Text style={styles.iconText}>📤</Text>
         </Pressable>
 
         <Pressable
@@ -69,14 +76,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: '#2a2a3a',
   },
-  historyBtn: {
+  iconBtn: {
     padding: 10,
     borderRadius: 8,
   },
-  historyBtnPressed: {
+  iconBtnPressed: {
     backgroundColor: 'rgba(255,255,255,0.08)',
   },
-  historyIcon: {
+  iconText: {
     fontSize: 20,
   },
   newGameBtn: {

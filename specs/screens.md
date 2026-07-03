@@ -7,6 +7,8 @@ Each screen section describes its purpose, UI elements, and behavior.
 ## Screen List
 
 - [Game Screen](#game-screen) — main playing screen, tracks life totals for two players
+- [History Screen](#history-screen) — chronological log of life-total snapshots
+- [Share Screen](#share-screen) — QR code and link to the app's GitHub repository
 
 ---
 
@@ -33,6 +35,8 @@ The screen is split into three horizontal zones:
 - Player zone (see layout below), rotated 180° so the opponent can read it from across the table
 
 *Middle zone (action bar):*
+- **History** button — opens the [History Screen](#history-screen)
+- **Share** button — opens the [Share Screen](#share-screen)
 - **New Game** button — resets both players' life totals to the starting value and starts a fresh game
 
 *Bottom zone (current player):*
@@ -116,6 +120,34 @@ A full-height scrollable table with a fixed header row and one data row per reco
 
 - Very many rows (long game with frequent changes): the list is scrollable; no truncation.
 - Negative life totals: displayed as-is (e.g., `−3`).
+
+---
+
+## Share Screen
+
+**Route / navigation target:** `/share` (modal, pushed from Game Screen)
+
+**Purpose:**
+Lets a player share the app with others at the table so they can get or update it themselves.
+
+**Layout:**
+
+A centered column of content:
+
+| Element | Content |
+|---------|---------|
+| QR code | Encodes the app's GitHub repository URL |
+| Link text | The sentence "or follow this link to update", styled as a link, pointing to the same GitHub repository URL |
+
+**Navigation:**
+
+- Opened by tapping the **Share** button in the middle action bar on the Game Screen.
+- A "Back" button (stack header) returns to the Game Screen.
+
+**Behavior:**
+
+- The QR code, when scanned, opens the GitHub repository URL in the device's browser.
+- Tapping the link text opens the same GitHub repository URL in the device's browser.
 
 ---
 

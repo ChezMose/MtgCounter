@@ -35,3 +35,7 @@ eas build --platform android   # cloud build
 - Life totals may go negative — no floor is enforced.
 - Life changes are throttled before being committed to history (single shared timer, see US-3).
 - The specs folder is the source of truth — update it before changing behavior.
+
+## User interaction triggers
+
+- When the user says anything matching "I built a new version" (or variants like "new build", "new APK", "I have a new version"), immediately invoke the `/release` command without waiting for further instruction.

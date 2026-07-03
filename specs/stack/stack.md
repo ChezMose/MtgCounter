@@ -29,6 +29,8 @@
 | expo-status-bar | Hide/style status bar | ~3.0 |
 | expo-build-properties | Config plugin to set Android min/target SDK | ~1.0 |
 | react-native-screens / react-native-safe-area-context | Peer deps required by expo-router | latest SDK-54-compatible |
+| react-native-qrcode-svg | Renders the QR code on the Share screen | latest |
+| react-native-svg | Peer dep required by react-native-qrcode-svg | latest SDK-54-compatible |
 
 ---
 

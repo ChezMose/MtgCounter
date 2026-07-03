@@ -13,7 +13,7 @@ No automated test suite is configured yet. Testing is done by running the app in
 
 2. Start the dev server:
    ```bash
-   npx expo start
+   npx expo start --tunnel
    ```
 
 3. Open the app in **Expo Go** (scan the QR code) or press `a` to launch an Android emulator.

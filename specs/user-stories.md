@@ -23,6 +23,17 @@ Each story follows: **As a** [role], **I want to** [action], **so that** [benefi
    - **Cancel** — returns to the game screen with no changes.
    - **Ok** — resets both players' life totals to the chosen value and starts the new game.
 
+## Sharing
+
+### US-4 — Share the App
+
+**As a** player, **I want to** tap a "Share" button on the game screen, **so that** other people at the table can quickly get the app.
+
+**Main flow:**
+1. On the main screen, the player taps the "Share" button in the middle action bar.
+2. The Share screen is displayed.
+3. It shows a QR code that opens the app's GitHub repository URL, plus a sentence "or follow this link to update" that links to the same URL.
+
 ## Life Tracking
 
 ### US-2 — Adjust a Player's Life Total
