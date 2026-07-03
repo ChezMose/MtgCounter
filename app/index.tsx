@@ -6,6 +6,9 @@ import { useGame } from '../context/GameContext';
 import { PlayerZone } from '../components/PlayerZone';
 import { NewGameDialog } from '../components/NewGameDialog';
 
+const playerBackground = require('../assets/starry-player.png');
+const opponentBackground = require('../assets/starry-opponent.png');
+
 export default function GameScreen() {
   useKeepAwake();
   const { state, changeLife, newGame } = useGame();
@@ -18,29 +21,30 @@ export default function GameScreen() {
         life={state.p2Life}
         onChangeLife={(d) => changeLife(2, d)}
         flipped
+        backgroundImage={opponentBackground}
       />
 
       {/* Middle action bar */}
       <View style={styles.bar}>
         <Pressable
-          style={({ pressed }) => [styles.iconBtn, pressed && styles.iconBtnPressed]}
-          onPress={() => router.push('/history')}
-        >
-          <Text style={styles.iconText}>📜</Text>
-        </Pressable>
-
-        <Pressable
-          style={({ pressed }) => [styles.iconBtn, pressed && styles.iconBtnPressed]}
-          onPress={() => router.push('/share')}
-        >
-          <Text style={styles.iconText}>📤</Text>
-        </Pressable>
-
-        <Pressable
-          style={({ pressed }) => [styles.newGameBtn, pressed && styles.newGameBtnPressed]}
+          style={({ pressed }) => [styles.barBtn, styles.newGameBtn, pressed && styles.newGameBtnPressed]}
           onPress={() => setDialogVisible(true)}
         >
-          <Text style={styles.newGameText}>New Game</Text>
+          <Text style={styles.barBtnText}>New Game</Text>
+        </Pressable>
+
+        <Pressable
+          style={({ pressed }) => [styles.barBtn, styles.historyBtn, pressed && styles.historyBtnPressed]}
+          onPress={() => router.push('/history')}
+        >
+          <Text style={styles.barBtnText}>History</Text>
+        </Pressable>
+
+        <Pressable
+          style={({ pressed }) => [styles.barBtn, styles.shareBtn, pressed && styles.shareBtnPressed]}
+          onPress={() => router.push('/share')}
+        >
+          <Text style={styles.barBtnText}>Share</Text>
         </Pressable>
       </View>
 
@@ -48,6 +52,7 @@ export default function GameScreen() {
       <PlayerZone
         life={state.p1Life}
         onChangeLife={(d) => changeLife(1, d)}
+        backgroundImage={playerBackground}
       />
 
       <NewGameDialog
@@ -72,30 +77,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 12,
+    paddingHorizontal: 12,
     borderTopWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: '#2a2a3a',
   },
-  iconBtn: {
-    padding: 10,
+  barBtn: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 9,
     borderRadius: 8,
-  },
-  iconBtnPressed: {
-    backgroundColor: 'rgba(255,255,255,0.08)',
-  },
-  iconText: {
-    fontSize: 20,
   },
   newGameBtn: {
     backgroundColor: '#c0392b',
-    paddingHorizontal: 22,
-    paddingVertical: 9,
-    borderRadius: 8,
   },
   newGameBtnPressed: {
     backgroundColor: '#a93226',
   },
-  newGameText: {
+  historyBtn: {
+    backgroundColor: '#2e6db4',
+  },
+  historyBtnPressed: {
+    backgroundColor: '#255a94',
+  },
+  shareBtn: {
+    backgroundColor: '#2e8b57',
+  },
+  shareBtnPressed: {
+    backgroundColor: '#256b45',
+  },
+  barBtnText: {
     color: '#fff',
     fontSize: 15,
     fontWeight: '600',

@@ -35,14 +35,18 @@ The screen is split into three horizontal zones:
 - Player zone (see layout below), rotated 180° so the opponent can read it from across the table
 
 *Middle zone (action bar):*
-- **History** button — opens the [History Screen](#history-screen)
-- **Share** button — opens the [Share Screen](#share-screen)
-- **New Game** button — resets both players' life totals to the starting value and starts a fresh game
+
+Three text-label buttons (no icons), each a distinct color and all the same width, in order left to right:
+- **New Game** (left) — resets both players' life totals to the starting value and starts a fresh game
+- **History** (middle) — opens the [History Screen](#history-screen)
+- **Share** (right) — opens the [Share Screen](#share-screen)
 
 *Bottom zone (current player):*
 - Player zone (see layout below)
 
 **Player zone layout:**
+
+Each player zone has a full-bleed background image behind its content (see [Player Card](design-specs.md#player-card) in the design specs): the current player's zone uses `starry-player.png`, the opponent's zone uses `starry-opponent.png`. The image is scaled proportionally to match the zone's width, centered vertically, and cropped top/bottom to fit the zone's height — its aspect ratio is never distorted. A 50%-opacity black scrim sits between the image and the zone's text so the life total and tap labels stay readable.
 
 Each player zone is subdivided into 5 tap regions arranged as follows:
 
@@ -104,7 +108,7 @@ A full-height scrollable table with a fixed header row and one data row per reco
 
 **Navigation:**
 
-- Opened by tapping the history icon in the middle action bar on the Game Screen.
+- Opened by tapping the **History** button in the middle action bar on the Game Screen.
 - A "Back" button (stack header) returns to the Game Screen.
 - The Game Screen is preserved while History is open — life changes made during this time are still recorded.
 

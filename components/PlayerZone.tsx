@@ -1,9 +1,11 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Image, ImageSourcePropType, LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 
 interface Props {
   life: number;
   onChangeLife: (delta: number) => void;
   flipped?: boolean;
+  backgroundImage: ImageSourcePropType;
 }
 
 function lifeFontSize(life: number): number {
@@ -11,30 +13,52 @@ function lifeFontSize(life: number): number {
   return Math.max(44, 100 - (len - 2) * 16);
 }
 
-export function PlayerZone({ life, onChangeLife, flipped }: Props) {
+export function PlayerZone({ life, onChangeLife, flipped, backgroundImage }: Props) {
+  const [zoneSize, setZoneSize] = useState({ width: 0, height: 0 });
+
+  function handleLayout(e: LayoutChangeEvent) {
+    const { width, height } = e.nativeEvent.layout;
+    setZoneSize({ width, height });
+  }
+
   return (
-    <View style={[styles.zone, flipped && styles.flipped]}>
+    <View style={[styles.zone, flipped && styles.flipped]} onLayout={handleLayout}>
+      <View style={styles.backgroundClip} pointerEvents="none">
+        {zoneSize.width > 0 && zoneSize.height > 0 && (
+          <Image
+            source={backgroundImage}
+            resizeMode="cover"
+            style={{ width: zoneSize.width, height: zoneSize.height }}
+          />
+        )}
+      </View>
       {/* Left column: −1 (top) / −5 (bottom) */}
       <View style={styles.column}>
         <Pressable
           style={({ pressed }) => [styles.tapZone, pressed && styles.pressed]}
           onPress={() => onChangeLife(-1)}
         >
-          <Text style={[styles.delta, styles.minus]}>−1</Text>
+          <View style={styles.textBox}>
+            <Text style={[styles.delta, styles.minus]}>−1</Text>
+          </View>
         </Pressable>
         <Pressable
           style={({ pressed }) => [styles.tapZone, pressed && styles.pressed]}
           onPress={() => onChangeLife(-5)}
         >
-          <Text style={[styles.delta, styles.minus]}>−5</Text>
+          <View style={styles.textBox}>
+            <Text style={[styles.delta, styles.minus]}>−5</Text>
+          </View>
         </Pressable>
       </View>
 
       {/* Center: life total display (not a tap target) */}
       <View style={styles.center} pointerEvents="none">
-        <Text style={[styles.lifeTotal, { fontSize: lifeFontSize(life) }]}>
-          {life}
-        </Text>
+        <View style={styles.textBox}>
+          <Text style={[styles.lifeTotal, { fontSize: lifeFontSize(life), lineHeight: lifeFontSize(life) }]}>
+            {life}
+          </Text>
+        </View>
       </View>
 
       {/* Right column: +1 (top) / +5 (bottom) */}
@@ -43,13 +67,17 @@ export function PlayerZone({ life, onChangeLife, flipped }: Props) {
           style={({ pressed }) => [styles.tapZone, pressed && styles.pressed]}
           onPress={() => onChangeLife(1)}
         >
-          <Text style={[styles.delta, styles.plus]}>+1</Text>
+          <View style={styles.textBox}>
+            <Text style={[styles.delta, styles.plus]}>+1</Text>
+          </View>
         </Pressable>
         <Pressable
           style={({ pressed }) => [styles.tapZone, pressed && styles.pressed]}
           onPress={() => onChangeLife(5)}
         >
-          <Text style={[styles.delta, styles.plus]}>+5</Text>
+          <View style={styles.textBox}>
+            <Text style={[styles.delta, styles.plus]}>+5</Text>
+          </View>
         </Pressable>
       </View>
     </View>
@@ -61,6 +89,17 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: '#0d1117',
+    overflow: 'hidden',
+  },
+  backgroundClip: {
+    ...StyleSheet.absoluteFillObject,
+    overflow: 'hidden',
+  },
+  textBox: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    paddingHorizontal: 10,
+    paddingVertical: 2,
+    borderRadius: 16,
   },
   flipped: {
     transform: [{ rotate: '180deg' }],
@@ -85,10 +124,13 @@ const styles = StyleSheet.create({
   lifeTotal: {
     color: '#e8e8e8',
     fontWeight: '700',
+    includeFontPadding: false,
   },
   delta: {
-    fontSize: 17,
+    fontSize: 28,
+    lineHeight: 28,
     fontWeight: '500',
+    includeFontPadding: false,
   },
   minus: {
     color: '#e57373',

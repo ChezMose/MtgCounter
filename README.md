@@ -13,7 +13,7 @@ Since this isn't on the Play Store, Android will warn you it's from an "unknown 
 ### 1. Get the APK
 
 Either:
-- **[Download the latest APK (v1.0.1)](https://github.com/ChezMose/MtgCounter/releases/download/v1.0.1/MtgCounter-1.0.1.apk)** from GitHub Releases, or
+- **[Download the latest APK (v1.0.2)](https://github.com/ChezMose/MtgCounter/releases/download/v1.0.2/MtgCounter-1.0.2.apk)** from GitHub Releases, or
 - **Build it yourself** — see [specs/README.md](specs/README.md#how-to-build-this-app) for build instructions (requires a free Expo account and `eas-cli`, or a local Android SDK setup).
 
 ### 2. Transfer it to your phone
